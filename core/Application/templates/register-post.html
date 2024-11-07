@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0d1117;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background-color: #1f2328;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 380px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #58a6ff;
+        }
+
+        .card-text {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .inputs-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            background-color: #272d35;
+            border: 1px solid #444;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .input-field:focus {
+            border-color: #58a6ff;
+            outline: none;
+        }
+
+        .card-button {
+            background-color: #58a6ff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .card-button:hover {
+            background-color: #4098ea;
+        }
+    </style>
+</head>
+
+<body style="background-color: #0d1117;">
+    <div class="card">
+        <h2 class="card-title">Register</h2>
+        <p class="card-text">Write down the secret phrase, it is your password. It will be impossible to restore</p>
+        <div class="inputs-container">
+            {% for value in seed %}
+                <input type="text" disabled class="input-field" value="{{ loop.index }}. {{ value }}">
+            {% endfor %}
+        </div>
+        <button type="button" class="card-button" onclick="copySeed()">Copy</button><br>
+        <a href="/"><button type="submit" class="card-button">Okay</button></a>
+    </div>
+
+    <script>
+        function copySeed() {
+            const seedPhrase = "{{ seed|join(' ') }}";
+            navigator.clipboard.writeText(seedPhrase)
+        }
+    </script>
+</body>
+
+</html>

@@ -37,7 +37,7 @@ A project for registration and authentication using a seed phrase in the Ethereu
 5. Usage
    To run the application, use the following command:
    ```bash
-   pip install -r requirements.txt
+   python3 main.py
    ```
 
 This will start the server, and you can interact with the API for registration and authentication via seed phrase.
